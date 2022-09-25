@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+    <h1> <%=day%>, <%=datenum%>  <%=month%>, <%=year%></h1>
+     <ul>
+        <!-- <li>Unit 2 Analog and Digital Electronics</li>
+        <li>Learning linked list operations</li>
+        <li>DSA ELab before 27/9/2022</li> -->
+        <% for(var i=0;i<tasks.length;i++){ %>
+        <li><%=tasks[i]%></li>
+        <% } %>
+     </ul>
+     <form action="/" method="post">
+        <input type="text" name="new_task">
+        <button type="submit">add task</button>
+     </form>
+</body>
+</html>
