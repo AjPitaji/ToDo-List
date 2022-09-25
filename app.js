@@ -1,14 +1,33 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
-app.get("/",function(request,response){
-response.send("</h1>My Todo List</h1>")
+var tasks=["Unit 2 Analog and Digital Electronics","Learning linked list operations","DSA ELab before 27/9/2022"];
+app.set('view engine','ejs');
+app.use(bodyParser.urlencoded({extended:true}));
+app.get("/",function(req,res){
+
+    //setting date
+     var today = new Date();
+     var daynum = today.getDay();
+     var monthnum = today.getMonth();
+     var year = today.getFullYear();
+     var day = days[daynum];
+     var month = months[monthnum];
+     var datenum = today.getDate();
+     //setting date ends here
+
+
+     res.render("index",{day:day,month:month,year:year,datenum:datenum,tasks:tasks});
 });
-app.get("/about",function(req,res){
-// res.send("<p>I am Anuj Jha. I live in Jamshedpur. All I want is myself to stay happy and I will make sure people around me are happy</p>")
-});
-app.get("/contact",function(req,res){
-    // res.send("<p>contact me at aj03jha@gmail.com</p>")
-    });
+
+app.post("/",function(req,res){
+    var task = req.body.new_task;
+    tasks.push(task);
+    res.redirect("/")
+})
+
 app.listen(3000,function(){
-// console.log("server running");
+    console.log("Server running");
 });
